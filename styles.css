@@ -1,0 +1,178 @@
+/* Basic reset for margin and padding */
+body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Roboto', Arial, sans-serif; /* Use the Google Font for all text on the page */
+  background-color: rgb(206, 206, 178); /* Beige background for the whole page */
+  color: #222; /* Dark text for readability */
+}
+
+/* Make all <p> text bold */
+p {
+  font-weight: bold;
+}
+
+/* Make all list text bold */
+li {
+  font-weight: bold;
+}
+
+/* Hero section styles */
+.hero {
+  /* Olive green background for the hero section */
+  background-color: rgb(87, 100, 39);
+  color: white; /* White text for contrast on olive background */
+  position: relative; /* Needed for layering content over canvas */
+  text-align: center;
+  padding: 40px 20px;
+  overflow: hidden; /* Ensures canvas doesn't overflow */
+  min-height: 300px; /* Ensures hero has enough height */
+}
+
+/* Center the hero-content vertically and horizontally inside the hero */
+.hero-content {
+  position: absolute;           /* Position relative to .hero */
+  top: 50%;                     /* Move down 50% of .hero's height */
+  left: 50%;                    /* Move right 50% of .hero's width */
+  transform: translate(-50%, -50%); /* Center exactly */
+  width: 100%;                  /* Optional: take full width */
+  text-align: center;           /* Center text horizontally */
+}
+
+/* Canvas for connecting dots in hero */
+.hero-canvas {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0; /* Behind hero content */
+  display: block;
+  pointer-events: none; /* Allows clicks through canvas */
+  background: transparent;
+}
+
+/* Bio, Skills, and Projects sections */
+section {
+  background-color: white;
+  margin: 2em auto;      /* Space above and below each section */
+  padding: 2em;          /* Space inside each section */
+  max-width: 40rem;      /* Maximum width, scales with font size for consistency */
+  width: 95%;            /* Take most of the screen on small devices */
+  border-radius: 8px;
+  box-shadow: 0 4px 24px rgba(80, 80, 80, 0.39); /* Soft shadow for depth */
+  margin-top: 40px;
+  margin-bottom: 40px;
+}
+
+/* Center text for all sections except skills */
+section:not(.skills) {
+  text-align: center;
+}
+
+/* Section headings */
+h2 {
+  color: #3e532c9f;
+  margin-top: 0;
+}
+
+/* Make all h3 headers use the same color as other headers */
+h3 {
+  color: #3e532c9f; /* You can change this to match your h1/h2 color if different */
+}
+
+/* Skills list styles */
+.skills ul {
+  list-style-type: disc;
+  padding-left: 20px;
+  overflow: auto; /* Clear floats after the list for layout stability */
+}
+
+/* Style for skill icons to make them proportional to the padding */
+/* Adjust the height to match the padding of the list for a balanced look */
+.skill-icon {
+  height: 24px;           /* Set icon size */
+  vertical-align: middle; /* Align icon with text */
+  margin-left: 8px;       /* Space between text and icon */
+  float: none;            /* Remove float so icon stays next to text */
+}
+
+/* Project item styles */
+.project {
+  margin-bottom: 16px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid #ffffff;
+}
+
+/* Project preview image style */
+.project-image {
+  width: 100%; /* Makes image width fit inside card padding (16px left + 16px right) */
+  height: 100%; /* Keeps image aspect ratio */
+  max-height: 100%;
+  object-fit: 100%;;
+  border-radius: 4px;
+  margin-bottom: 10px;
+  /* The image now fits exactly between the left and right padding of the card */
+}
+
+/* Sticky navbar styles */
+.navbar {
+  position: sticky; /* Makes the navbar stick to the top */
+  top: 0; /* Stick to the very top */
+  background-color: #222; /* Dark background */
+  padding: 10px 0;
+  text-align: center;
+  z-index: 100; /* Make sure it stays above other content */
+}
+
+/* Style the navbar links */
+.navbar a {
+  color: #e2e2e2; /* White text */
+  text-decoration: none; /* Remove underline */
+  margin: 0 15px; /* Space between links */
+  font-size: 1.1em;
+  padding: 6px 12px;
+  border-radius: 4px;
+  transition: background 0.2s;
+}
+
+/* Highlight link on hover */
+.navbar a:hover {
+  background-color: #444;
+}
+
+/* Make the profile image proportional to the About Me section */
+.profile-image {
+  width: 100%;
+  height: auto;         /* Keeps the image's aspect ratio */
+  display: block;       /* Makes the image start on a new line */
+  margin: 0 auto 16px;  /* Centers the image and adds space below */
+  border-radius: 8px;   /* Optional: rounds the corners for a friendly look */
+}
+
+/* Hide bio and project description text by default, but allow smooth transition */
+.bio-text,
+.project-description {
+  opacity: 0;
+  transition: opacity 0.5s;
+  /* Keep space so layout doesn't jump */
+  pointer-events: none;
+}
+
+/* When the section is closest to the center, fade in the text */
+section.centered .bio-text,
+section.centered .project-description {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+/* Responsive: Make sure it looks good on small screens */
+@media (max-width: 650px) {
+  section {
+    max-width: 98vw;
+    padding: 1em;
+  }
+  .hero {
+    padding: 2em 0.5em;
+  }
+}

@@ -2,10 +2,214 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>My Personal Site</title>
-  <link rel="stylesheet" href="style.css">
+  <title>My Portfolio</title>
+  <!-- Link to the CSS file -->
+  <link rel="stylesheet" href="styles.css">
+  <!-- Use a modern Google Font for all text -->
+  <link href="https://alejandro-1035.github.io/02-prj-intel-sustainability/" rel="stylesheet">
 </head>
 <body>
-  <!-- Add your HTML content here -->
+  <!-- Sticky navigation bar at the top -->
+  <nav class="navbar">
+    <!-- Navigation links to different sections -->
+    <a href="#about">About</a>
+    <a href="#skills">Skills</a>
+    <a href="#projects">Projects</a>
+  </nav>
+  <!-- Hero Section: Your name and a short tagline -->
+  <header>
+    <div class="hero" id="about">
+      <!-- Canvas for connecting dots background -->
+      <canvas class="hero-canvas"></canvas>
+      <div class="hero-content">
+        <!-- Your hero text goes here -->
+        <h1>Welcome to My Portfolio</h1>
+        <p>Beginner Web Developer</p>
+        <p>Alejandro Gutierrez Perdomo</p>
+      </div>
+    </div>
+  </header>
+
+  <!-- Bio Section: A short introduction about yourself -->
+  <section class="bio" id="about">
+    <h2>About Me</h2>
+    <!-- Container for image and bio text to enable hover effect -->
+    <div class="bio-hover-container">
+      <!-- Figure element groups the image and its caption -->
+      <figure>
+        <img src="img/self.jpg" alt="Profile Picture" class="profile-image">
+        <!-- Figcaption provides a description for the image -->
+        <figcaption>This is me and my neice!</figcaption>
+      </figure>
+      <!-- Bio text will appear when you hover over the image above -->
+      <p class="bio-text hover-reveal">
+        <!-- Write a few sentences about yourself here -->
+        I am a student at the University of Arizona, wanting to pursue a degree emphasising the development of Artificial Intelligence. The reason being that I am fascinated by the potential of AI to transform industries and improve lives.
+      </p>
+    </div>
+  </section>
+
+  <!-- Skills Section: List your skills -->
+  <section class="skills" id="skills">
+    <h2>Skills</h2>
+    <ul>
+      <!-- Each skill and its icon are in the same list item -->
+      <li>
+        HTML (learning)
+        <img src="img/HTML.png" alt="HTML Icon" class="skill-icon">
+      </li>
+      <li>
+        CSS (learning)
+        <img src="img/CSS.png" alt="CSS Icon" class="skill-icon">
+      </li>
+      <li>
+        JavaScript (learning)
+        <img src="img/JS.png" alt="JavaScript Icon" class="skill-icon">
+      </li>
+      <li>
+        CAD
+        <img src="img/Onshape.png" alt="Onshape Icon" class="skill-icon">
+      </li>
+      <li>
+        C
+        <img src="img/C.png" alt="C Icon" class="skill-icon">
+      </li>
+      <li>
+        C#
+        <img src="img/Csharp.png" alt="C# Icon" class="skill-icon">
+      </li>
+      <li>
+        Github
+        <img src="img/Github.png" alt="GitHub Icon" class="skill-icon">
+        <!-- You can add an icon here if you have one -->
+      </li>
+      <li>
+        Linux (Ubuntu)
+        <img src="img/Ubuntu.png" alt="Linux Icon" class="skill-icon">
+        <!-- You can add an icon here if you have one -->
+      </li>
+    </ul>
+  </section>
+  <!--Projects Section-->
+  <section class="projects" id="projects">
+    <h2>Projects</h2>
+    <!-- Horizontal scroll container for project cards -->
+    <div class="projects-scroll">
+      <!-- Project card component -->
+      <div class="project-card">
+        <!-- Container for image and description to enable hover effect -->
+        <div class="project-hover-container">
+          <!-- Make the project image clickable and open in a new window -->
+          <a href="https://alejandro-1035.github.io/02-prj-intel-sustainability" target="_blank">
+            <img src="img/Intel_prj.png" alt="Project 1 Preview" class="project-image">
+          </a>
+          <!-- Caption below the project image -->
+          <div class="project-image-caption">
+            <!-- This text tells users they can click the image -->
+            click to view page!
+          </div>
+          <!-- Project description will appear when you hover over the image above -->        
+          <h3>Intel Sustainability Project</h3>
+          <p class="project-description">This project focuses on Intel's Sustainability journey, showcasing the company's dedication to the reduction of environmental impact through manufacturing, adoption of renewable energy, and innovative practices. It explores key milestones in Intel's efforts to reach their goal of net-zero emissions.</p>
+        </div>
+        <!-- Project title (always visible) -->
+      </div>
+      <!-- You can add more project cards below for future projects -->
+      <!--
+      <div class="project-card">
+        <img src="project2-preview.jpg" alt="Project 2 Preview" class="project-image">
+        <h3>Project 2</h3>
+        <p>This is a short description of Project 2.</p>
+      </div>
+      -->
+    </div>
+  </section>
+  <!-- Info text at the bottom of the page -->
+  <div id="bottom-info" class="info-text" style="display: none;">
+    <!-- This text will appear when scrolling down -->
+    Thanks for visiting! Scroll up to return to the top.
+  </div>
+
+  <!-- Add invisible spacers to allow top and bottom sections to reach center -->
+  <!-- Spacer at the top -->
+  <div style="height: 40vh;"></div>
+  <!-- Spacer at the bottom -->
+  <div style="height: 40vh;"></div>
+
+  <!-- Link the hero canvas JavaScript at the end of the body -->
+  <script src="hero-canvas.js"></script>
+  <!-- Script to handle section visibility based on scroll position and add 'centered' class -->
+  <script>
+    // Helper function to get the distance from the center of the viewport
+    function getDistanceFromCenter(element) {
+      const rect = element.getBoundingClientRect();
+      const elementCenter = rect.top + rect.height / 2;
+      const viewportCenter = window.innerHeight / 2;
+      return Math.abs(elementCenter - viewportCenter);
+    }
+
+    // Get all main sections
+    const sections = document.querySelectorAll('section');
+
+    function updateSectionVisibility() {
+      // Find the maximum possible distance (bottom of viewport to top, or vice versa)
+      const maxDistance = window.innerHeight / 2;
+
+      // Find the section closest to the center (not strictly needed for smooth opacity)
+      let minDistance = Infinity;
+      let closestSection = null;
+
+      sections.forEach(section => {
+        const distance = getDistanceFromCenter(section);
+        if (distance < minDistance) {
+          minDistance = distance;
+          closestSection = section;
+        }
+      });
+
+      // Set opacity for each section based on distance from center
+      sections.forEach(section => {
+        const distance = getDistanceFromCenter(section);
+        // Calculate opacity: 1 at center, 0.4 at farthest (or adjust as needed)
+        let opacity = 1 - (distance / maxDistance) * 0.6;
+        if (opacity < 0.4) opacity = 0.4;
+        if (opacity > 1) opacity = 1;
+        section.style.opacity = opacity.toString();
+
+        // Add 'centered' class only to the closest section
+        if (section === closestSection) {
+          section.classList.add('centered');
+        } else {
+          section.classList.remove('centered');
+        }
+      });
+    }
+
+    // Smoothly scroll section to center when clicking navbar links
+    document.querySelectorAll('.navbar a').forEach(link => {
+      link.addEventListener('click', function(event) {
+        // Prevent default jump
+        event.preventDefault();
+        // Get the section by href (e.g., #about)
+        const sectionId = this.getAttribute('href');
+        const section = document.querySelector(sectionId);
+        if (section) {
+          // Get section's position relative to the document
+          const rect = section.getBoundingClientRect();
+          // Calculate the scroll position to center the section
+          const sectionCenter = rect.top + window.scrollY + rect.height / 2;
+          const viewportCenter = window.innerHeight / 2;
+          const scrollTo = sectionCenter - viewportCenter;
+          // Smooth scroll to the calculated position
+          window.scrollTo({ top: scrollTo, behavior: 'smooth' });
+        }
+      });
+    });
+
+    // Update on scroll and on page load
+    window.addEventListener('scroll', updateSectionVisibility);
+    window.addEventListener('DOMContentLoaded', updateSectionVisibility);
+    window.addEventListener('resize', updateSectionVisibility);
+  </script>
 </body>
 </html>
