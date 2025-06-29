@@ -150,17 +150,21 @@ h3 {
   border-radius: 8px;   /* Optional: rounds the corners for a friendly look */
 }
 
-/* Hide bio and project description text by default, but allow smooth transition */
-.bio-text,
+/* Make bio text always visible */
+.bio-text {
+  opacity: 1;
+  pointer-events: auto;
+  transition: opacity 0.5s;
+}
+
+/* Hide project description text by default, but allow smooth transition */
 .project-description {
   opacity: 0;
   transition: opacity 0.5s;
-  /* Keep space so layout doesn't jump */
   pointer-events: none;
 }
 
-/* When the section is closest to the center, fade in the text */
-section.centered .bio-text,
+/* When the section is closest to the center, fade in the project description */
 section.centered .project-description {
   opacity: 1;
   pointer-events: auto;
